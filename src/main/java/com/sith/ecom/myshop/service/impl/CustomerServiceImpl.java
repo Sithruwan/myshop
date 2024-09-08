@@ -7,6 +7,8 @@ import com.sith.ecom.myshop.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
@@ -15,6 +17,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void createCustomer(RequestCustomerDTO dto) {
         CustomerEntity entity = CustomerEntity.builder()
+                .propertyId(UUID.randomUUID().toString())
                 .name(dto.getName())
                 .email(dto.getEmail())
                 .phone(dto.getPhone())
