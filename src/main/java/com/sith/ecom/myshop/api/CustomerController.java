@@ -54,8 +54,8 @@ public class CustomerController {
     public ResponseEntity<StandardResponce> deleteCustomer(@PathVariable String id) {
         customerService.deleteCustomer(id);
         return new ResponseEntity<>(
-                new StandardResponce(200,"Customer Deleted ",null),
-                HttpStatus.OK
+                new StandardResponce(204,"Customer Deleted ",null),
+                HttpStatus.NO_CONTENT
         );
     }
 }

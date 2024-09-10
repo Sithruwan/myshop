@@ -4,6 +4,7 @@ import com.sith.ecom.myshop.dto.request.RequestCustomerDTO;
 import com.sith.ecom.myshop.dto.responce.ResponseCustomerDTO;
 import com.sith.ecom.myshop.dto.responce.paginate.CustomerPaginateDTO;
 import com.sith.ecom.myshop.entity.CustomerEntity;
+import com.sith.ecom.myshop.exception.EntryNotFoundException;
 import com.sith.ecom.myshop.repo.CustomerRepo;
 import com.sith.ecom.myshop.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
             return toResponseCustomerDTO(byId.get());
         }
         else {
-            throw new RuntimeException("Customer not found");
+            throw new EntryNotFoundException("Customer not found");
         }
 
 }
@@ -59,7 +60,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerEntity.setActive(dto.isActive());
             customerRepo.save(customerEntity);
         }else {
-            throw new RuntimeException("Customer not found");
+            throw new EntryNotFoundException("Customer not found");
         }
     }
 
@@ -71,7 +72,7 @@ public class CustomerServiceImpl implements CustomerService {
         if(byId.isPresent()){
             customerRepo.delete(byId.get());
         }else {
-            throw new RuntimeException("Customer not found");
+            throw new EntryNotFoundException("Customer not found");
         }
     }
 
