@@ -1,6 +1,8 @@
 package com.sith.ecom.myshop.api;
 
 import com.sith.ecom.myshop.dto.request.RequestCustomerDTO;
+import com.sith.ecom.myshop.dto.responce.ResponseCustomerDTO;
+import com.sith.ecom.myshop.dto.responce.paginate.CustomerPaginateDTO;
 import com.sith.ecom.myshop.service.CustomerService;
 import com.sith.ecom.myshop.utill.StandardResponce;
 import lombok.RequiredArgsConstructor;
@@ -23,25 +25,37 @@ public class CustomerController {
                 new StandardResponce(201,"Customer Created Successfully",dto),
                 HttpStatus.CREATED
         );
-    }
+    } 
     @GetMapping("/{id}")
-    public String getCustomerById(@PathVariable String id) {
-        System.out.println(id);
-        return null;
+    public ResponseEntity<StandardResponce>  getCustomerById(@PathVariable String id) {
+        ResponseCustomerDTO customerById = customerService.getCustomerById(id);
+        return new ResponseEntity<>(
+                new StandardResponce(200,"Customer Found ",customerById),
+                HttpStatus.OK
+        );
     }
     @GetMapping("/list")
-    public String getAllCustomers(@RequestParam String searchText,@RequestParam int page,@RequestParam int pageSize) {
-        System.out.println(searchText+" "+page+" "+pageSize);
-        return null;
+    public ResponseEntity<StandardResponce> getAllCustomers(@RequestParam String searchText,@RequestParam int page,@RequestParam int pageSize) {
+        CustomerPaginateDTO allCustomers = customerService.getAllCustomers(searchText, page, pageSize);
+        return new ResponseEntity<>(
+                new StandardResponce(200,"Customer Found ",allCustomers),
+                HttpStatus.OK
+        );
     }
-    @PutMapping()
-    public String updateCustomer(@RequestBody RequestCustomerDTO dto) {
-
-        return null;
+    @PutMapping("/{id}")
+    public ResponseEntity<StandardResponce> updateCustomer(@PathVariable String id,@RequestBody RequestCustomerDTO dto) {
+        customerService.updateCustomer(id,dto);
+        return new ResponseEntity<>(
+                new StandardResponce(201,"Customer Updated ",null),
+                HttpStatus.OK
+        );
     }
     @DeleteMapping("/{id}")
-    public String deleteCustomer(@PathVariable String id) {
-        System.out.println(id);
-        return null;
+    public ResponseEntity<StandardResponce> deleteCustomer(@PathVariable String id) {
+        customerService.deleteCustomer(id);
+        return new ResponseEntity<>(
+                new StandardResponce(200,"Customer Deleted ",null),
+                HttpStatus.OK
+        );
     }
 }
