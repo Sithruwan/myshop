@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -26,5 +27,7 @@ public class ProductEntity {
             cascade = CascadeType.ALL)
     private List<ProductImageEntity> images = new ArrayList<>();
 
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private HashSet<CustomerOrderEntity> orders = new HashSet<>();
 
 }

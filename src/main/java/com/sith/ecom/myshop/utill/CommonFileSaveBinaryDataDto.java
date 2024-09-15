@@ -12,6 +12,6 @@ import java.sql.Blob;
 public class CommonFileSaveBinaryDataDto {
     private Blob hash;
     private String directory;
-    private String fileName;
-    private String resourceUrl;
+    private Blob fileName;
+    private Blob resourceUrl;
 }
