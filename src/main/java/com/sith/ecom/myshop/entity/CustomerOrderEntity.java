@@ -23,6 +23,8 @@ public class CustomerOrderEntity {
     @Column(name = "total_cost",nullable = false,columnDefinition = "DOUBLE")
     private double totalCost;
     private int qty;
+
+    @Enumerated(value = EnumType.STRING)
     private PaymentType paymentType;
 
     @ManyToOne(fetch = FetchType.LAZY)
