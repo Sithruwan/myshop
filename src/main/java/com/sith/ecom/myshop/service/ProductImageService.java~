@@ -8,7 +8,7 @@ import com.sith.ecom.myshop.dto.responce.paginate.CustomerPaginateDTO;
 
 public interface ProductImageService {
     public void createProductImage(RequestProductImageDTO dto, String productId);
-    public ResponseProductImageDTO getProductImageById(String id);
+    public RequestProductImageDTO getProductImageById(String id);
 //    public void updateProductImage(String id, RequestProductImageDTO dto);
     public void deleteProductImage(String id);
 //    public ResponseProductImageDTO getAllProductImage(String searchText, int page, int pageSize);

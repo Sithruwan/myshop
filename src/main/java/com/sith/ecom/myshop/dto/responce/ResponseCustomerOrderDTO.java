@@ -10,20 +10,10 @@ import java.util.Date;
 public class ResponseCustomerOrderDTO {
 
     private String propertyId;
-
-
     private Date createdDate;
-
-
     private double totalCost;
     private int qty;
-
-
     private PaymentType paymentType;
-
-
     private String customer;
-
-
     private String product;
 }
