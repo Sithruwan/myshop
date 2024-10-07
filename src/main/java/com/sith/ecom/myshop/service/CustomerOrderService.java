@@ -8,10 +8,12 @@ import com.sith.ecom.myshop.dto.responce.paginate.CustomerOrderPaginateDTO;
 import com.sith.ecom.myshop.dto.responce.paginate.CustomerPaginateDTO;
 
 public interface CustomerOrderService {
-    public void createCustomer(RequestCustomerOrderDTO dto);
-    public ResponseCustomerOrderDTO getCustomerById(String id);
-    public void updateCustomer(String id, RequestCustomerOrderDTO dto);
-    public void deleteCustomer(String id);
-    public CustomerOrderPaginateDTO getAllCustomers(String customerId, int page, int pageSize);
+
+
+    public void createCustomerOrder(RequestCustomerOrderDTO dto);
+    public ResponseCustomerOrderDTO getCustomerOrderById(String id);
+    public void updateCustomerOrder(String id, RequestCustomerOrderDTO dto);
+    public void deleteCustomerOrder(String id);
+    public CustomerOrderPaginateDTO getAllCustomerOrders(String customerId, int page, int pageSize);
 
 }

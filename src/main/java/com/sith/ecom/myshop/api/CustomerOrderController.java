@@ -1,0 +1,56 @@
+package com.sith.ecom.myshop.api;
+
+import com.sith.ecom.myshop.dto.request.RequestCustomerOrderDTO;
+import com.sith.ecom.myshop.dto.responce.ResponseCustomerOrderDTO;
+import com.sith.ecom.myshop.dto.responce.paginate.CustomerOrderPaginateDTO;
+import com.sith.ecom.myshop.service.CustomerOrderService;
+import com.sith.ecom.myshop.utill.StandardResponce;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RequiredArgsConstructor
+@RestController
+@RequestMapping("api/v1/orders")
+public class CustomerOrderController {
+
+    private final CustomerOrderService orderService;
+    @PostMapping()
+    public ResponseEntity<StandardResponce> createOrder(@RequestBody RequestCustomerOrderDTO dto) {
+        orderService.createCustomerOrder(dto);
+        return new ResponseEntity<>(
+                new StandardResponce(201,"Order Created Successfully",dto),
+                HttpStatus.CREATED
+        );
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<StandardResponce>  getOrderById(@PathVariable String id) {
+        ResponseCustomerOrderDTO customerOrderById = orderService.getCustomerOrderById(id);
+        return new ResponseEntity<>(
+                new StandardResponce(200,"Order Found ",customerOrderById),
+                HttpStatus.OK
+        );
+    }
+    @GetMapping("/list")
+    public ResponseEntity<StandardResponce> getAllOrders(@RequestParam String customerId,@RequestParam int page,@RequestParam int pageSize) {
+        CustomerOrderPaginateDTO allCustomerOrders = orderService.getAllCustomerOrders(customerId, page, pageSize);
+        return new ResponseEntity<>(
+                new StandardResponce(200,"Order Found ",allCustomerOrders),
+                HttpStatus.OK
+        );
+    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<StandardResponce> updateOrder(@PathVariable String id,@RequestBody RequestCustomerOrderDTO dto) {
+//
+//        return null;
+//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<StandardResponce> deleteOrder(@PathVariable String id) {
+        orderService.deleteCustomerOrder(id);
+        return new ResponseEntity<>(
+                new StandardResponce(204,"Order Deleted ",null),
+                HttpStatus.NO_CONTENT
+        );
+    }
+}

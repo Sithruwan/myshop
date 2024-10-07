@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,7 +36,7 @@ public class ProductImageServiceImpl implements ProductImageService {
     private final FileDataExtractor fileDataExtractor;
     @Override
     @SneakyThrows
-    public void createProductImage(RequestProductImageDTO dto, String productId)  {
+    public void createProductImage(MultipartFile file, String productId)  {
 
 
         CommonFileSaveBinaryDataDto resource =null;
@@ -44,7 +45,7 @@ public class ProductImageServiceImpl implements ProductImageService {
           if (selectedProduct.isEmpty()) {
               throw new EntryNotFoundException("Product not found...!");
           }
-           resource = fileService.createResource(dto.getImage(), "myShop/product-image/", bucketName);
+           resource = fileService.createResource(file, "myShop/product-image/", bucketName);
 
           ProductImageEntity productImageEntity = ProductImageEntity.builder()
                   .propertyId(UUID.randomUUID().toString())
