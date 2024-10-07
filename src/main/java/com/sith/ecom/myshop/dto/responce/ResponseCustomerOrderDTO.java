@@ -4,9 +4,14 @@ import com.sith.ecom.myshop.entity.CustomerEntity;
 import com.sith.ecom.myshop.entity.ProductEntity;
 import com.sith.ecom.myshop.entity.enums.PaymentType;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ResponseCustomerOrderDTO {
 
     private String propertyId;
