@@ -45,7 +45,7 @@ public class ProductImageServiceImpl implements ProductImageService {
           if (selectedProduct.isEmpty()) {
               throw new EntryNotFoundException("Product not found...!");
           }
-           resource = fileService.createResource(file, "myShop/product-image/", bucketName);
+           resource = fileService.createResource(file, "myshopbucketww/product-image/", bucketName);
 
           ProductImageEntity productImageEntity = ProductImageEntity.builder()
                   .propertyId(UUID.randomUUID().toString())

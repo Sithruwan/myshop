@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -28,6 +29,6 @@ public class ProductEntity {
     private List<ProductImageEntity> images = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    private HashSet<CustomerOrderEntity> orders = new HashSet<>();
+    private Set<CustomerOrderEntity> orders = new HashSet<>();
 
 }

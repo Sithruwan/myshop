@@ -38,7 +38,7 @@ public class FileServiceImpl implements FileService {
 
             return new CommonFileSaveBinaryDataDto(
                     new SerialBlob(putObjectResult.getContentMd5().getBytes()),
-                    directory,
+                    new SerialBlob(directory.getBytes()),
                     new SerialBlob(newFileName.getBytes()),
                     new SerialBlob(s3Client.getResourceUrl(bucket, directory + newFileName).getBytes()));
         } catch (SQLException | IOException e) {

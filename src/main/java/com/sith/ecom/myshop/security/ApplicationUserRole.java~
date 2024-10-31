@@ -1,0 +1,20 @@
+package com.sith.ecom.myshop.security;
+
+import com.google.common.collect.Sets;
+
+import java.util.Set;
+
+public enum ApplicationUserRole {
+    USER(Sets.newHashSet()),
+    ADMIN(Sets.newHashSet()),
+    CUSTOMER(Sets.newHashSet()),
+
+    MANAGER(Sets.newHashSet());
+
+    ApplicationUserRole(Set<ApplicationUserPermission> applicationUserPermissions) {
+        this.applicationUserPermissions = applicationUserPermissions;
+    }
+
+    private final Set<ApplicationUserPermission> applicationUserPermissions;
+
+}
